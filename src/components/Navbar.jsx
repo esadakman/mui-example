@@ -12,14 +12,14 @@ import MenuItem from "@mui/material/MenuItem";
 // import Avatar from "@mui/material/Avatar";
 // import Tooltip from "@mui/material/Tooltip";
 import logo from "../img/logo.png";
-import { Link as RouterLink, useNavigate } from "react-router-dom";
+import { Link as RouterLink, NavLink } from "react-router-dom";
 
 const pages = ["Main", "Login", "Logout"];
 // const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -38,12 +38,10 @@ const Navbar = () => {
   // };
 
   return (
-    <AppBar position="static" color="primary">
-      <Container maxWidth="xl" sx={{ height: "10vh" }}>
+    <AppBar position="static" color="secondary">
+      {/* <Container maxWidth="xl" sx={{ height: { xs: "8vh", sm: "10vh" } }}> */}
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* <RouterLink to="/" sx={{ display: { xs: "flex", md: "none" } }}>
-            <img src={logo} alt="logo" width="200rem" />
-          </RouterLink> */}
           <Typography
             variant="link"
             noWrap
@@ -92,7 +90,7 @@ const Navbar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <NavLink to={`/${page.toLocaleLowerCase()}`}>{page}</NavLink>
                 </MenuItem>
               ))}
             </Menu>
@@ -111,9 +109,17 @@ const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              // justifyContent: "center",
             }}
           >
-            <img src={logo} alt="logo" width="200px" />
+            <img
+              src={logo}
+              alt="logo"
+              width="200px"
+              // sx={{ width: { xs: "150px", sm: "200px" } }}
+              // display="flex"
+              // justify="center"
+            />
           </Typography>
           <Box
             sx={{
@@ -123,26 +129,28 @@ const Navbar = () => {
             }}
           >
             <Button
+              sx={{ fontWeight: "bold" }}
               variant="link"
               component={RouterLink}
               to="/main"
-              // sx={{ my: 2, color: "white", display: "block" }}
             >
               Home
             </Button>
+
             <Button
+              sx={{ fontWeight: "bold" }}
               variant="link"
               component={RouterLink}
               to="/"
-              // sx={{ my: 2, color: "white", display: "block" }}
             >
               Login
             </Button>
             <Button
+              sx={{ fontWeight: "bold" }}
               variant="link"
               component={RouterLink}
               to="/"
-              // sx={{ my: 2, color: "white", display: "block" }}
+              onClick={() => sessionStorage.clear()}
             >
               Logout
             </Button>
@@ -153,3 +161,11 @@ const Navbar = () => {
   );
 };
 export default Navbar;
+
+// <Typography
+// textAlign="center"
+// variant="link"
+// component={RouterLink}
+// // to="/"
+// onClick={navigate(`/${page}`)}
+//   ></Typography>;

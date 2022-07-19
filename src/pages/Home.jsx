@@ -11,15 +11,24 @@ import {
   Container,
 } from "@mui/material";
 import data from "../data";
+import AppPagination from "../components/AppPagination";
 
-export default function CardsGrid() {
+export default function Home() {
   // const [courses, setCourse] = React.useState(data);
+
   return (
     <Container>
-      <Typography variant="h4" align="center" mt={4} color="error">
-        CARDS & GRIDS
+      <Typography
+        variant="h4"
+        align="center"
+        m={4}
+        color="error"
+        sx={{ fontSize: { xs: "2rem", sm: "3rem" } }}
+      >
+        COURSES
       </Typography>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
+        <AppPagination />
         {data.map((card) => {
           const { id, name, text, img } = card;
           return (

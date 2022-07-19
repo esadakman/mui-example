@@ -23,6 +23,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -45,18 +46,27 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    // console.log(data);
+    const userInfo = {
       email: data.get("email"),
       password: data.get("password"),
-    });
+    };
+    sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    navigate("/main");
   };
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid container component="main" sx={{ height: "90vh" }}>
+      <Grid
+        container
+        component="main"
+        sx={{ height: { xs: "92vh", sm: "91vh" } }}
+      >
         <CssBaseline />
         <Grid
           item
