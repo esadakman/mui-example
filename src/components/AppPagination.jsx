@@ -20,8 +20,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppPagination = () => {
+const AppPagination = ({
+  instPerPage,
+  totalInsts,
+  currentPage,
+  setCurrentPage,
+}) => {
   const classes = useStyles();
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
+    pageNumbers.push(i);
+  }
+  console.log(pageNumbers);
+
+  const handleChange = (event, value) => {
+    setCurrentPage(value);
+  };
   return (
     <div className={classes.container}>
       <div className={classes.root}>
@@ -31,7 +45,9 @@ const AppPagination = () => {
             justifyContent: "center",
           }}
           variant="outlined"
-          count={3}
+          count={pageNumbers.length}
+          page={currentPage}
+          onChange={handleChange}
         />
       </div>
     </div>

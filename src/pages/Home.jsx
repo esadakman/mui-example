@@ -20,26 +20,22 @@ export default function Home() {
   const [instructors, setInstructors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [instructorsPerPage] = useState(10);
+  const [instPerPage] = useState(2);
 
+  const fetchInstructors = async () => {
+    setLoading(true);
+    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    setInstructors(res.data);
+    setLoading(false);
+  };
   useEffect(() => {
-    const fetchInstructors = async () => {
-      setLoading(true);
-      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-      setInstructors(res.data);
-      setLoading(false);
-    };
-
     fetchInstructors();
   }, []);
   // console.log(instructors);
-  const indexOfLastInstructors = currentPage * instructorsPerPage;
-  const indexOfFirstInstructors = indexOfLastInstructors - instructorsPerPage;
-  const currentInstructors = instructors.slice(
-    indexOfFirstInstructors,
-    indexOfLastInstructors
-  );
-
+  const indexOfLastInst = currentPage * instPerPage;
+  const indexOfFirstInst = indexOfLastInst - instPerPage;
+  const currentInst = instructors.slice(indexOfFirstInst, indexOfLastInst);
+  console.log(instructors.length);
   return (
     <Container>
       <Typography
@@ -52,9 +48,14 @@ export default function Home() {
         COURSES
       </Typography>
 
-      <Cards instructors={instructors} loading={loading} />
+      <Cards instructors={currentInst} loading={loading} />
 
-      <AppPagination />
+      <AppPagination
+        instPerPage={instPerPage}
+        totalInsts={instructors.length}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
     </Container>
   );
 }

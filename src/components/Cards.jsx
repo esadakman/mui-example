@@ -25,6 +25,7 @@ const Cards = ({ instructors, loading }) => {
             key={id}
             justifyContent="center"
             alignItems="center"
+            // gap={2}
           >
             <Grid item xs={12} sm={6} md={4}>
               <Card>
