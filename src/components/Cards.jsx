@@ -11,59 +11,50 @@ import {
 } from "@mui/material";
 // import data from "../data";
 const Cards = ({ instructors, loading }) => {
-  if (loading) {
-    return <h2>Loading...</h2>;
-  }
+  //   if (loading) {
+  //     return <h2>Loading...</h2>;
+  //   }
   return (
-    <div>
+    <>
       {instructors.map((inst) => {
         const { id, name, phone } = inst;
         return (
-          <Grid
-            container
-            spacing={2}
-            key={id}
-            justifyContent="center"
-            alignItems="center"
-            // gap={2}
-          >
-            <Grid item xs={12} sm={6} md={4}>
-              <Card>
-                <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    image={`https://avatars.dicebear.com/v2/avataaars/${id}.svg`}
-                    alt="asd"
-                  />
-                  <CardContent>
-                    <Typography
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                      align="center"
-                    >
-                      {name}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      align="center"
-                    >
-                      Contact:{phone}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Share
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
+          <Grid item xs={12} sm={6} md={4} sx={{ bgcolor: "red" }}>
+            <Card>
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  image={`https://avatars.dicebear.com/v2/avataaars/${id}.svg`}
+                  alt="asd"
+                />
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    align="center"
+                  >
+                    {name}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    align="center"
+                  >
+                    Contact:{phone}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button size="small" color="primary">
+                  Share
+                </Button>
+              </CardActions>
+            </Card>
           </Grid>
         );
       })}
-    </div>
+    </>
   );
 };
 

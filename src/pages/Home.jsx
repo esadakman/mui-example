@@ -1,19 +1,9 @@
-// import * as React from "react";
-// import Card from "@mui/material/Card";
-// import CardContent from "@mui/material/CardContent";
-// import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {
-  // Button,
-  // CardActionArea,
-  // CardActions,
-  Container,
-} from "@mui/material";
-// import data from "../data";
-import AppPagination from "../components/AppPagination";
+import { Container, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "../components/Cards";
+import AppPagination from "../components/AppPagination";
 
 export default function Home() {
   // const [courses, setCourse] = React.useState(data);
@@ -47,9 +37,9 @@ export default function Home() {
       >
         COURSES
       </Typography>
-
-      <Cards instructors={currentInst} loading={loading} />
-
+      <Grid container spacing={2} justifyContent="center" alignItems="center">
+        <Cards instructors={instructors} loading={loading} />
+      </Grid>
       <AppPagination
         instPerPage={instPerPage}
         totalInsts={instructors.length}
@@ -60,28 +50,32 @@ export default function Home() {
   );
 }
 
-// {data.map((card) => {
-//         const { id, name, text, img } = card;
-//         return (
-//           <Grid item key={id} xs={12} sm={6} md={4}>
-//             <Card>
-//               <CardActionArea>
-//                 <CardMedia component="img" image={img} alt={name} />
-//                 <CardContent>
-//                   <Typography gutterBottom variant="h5" component="div">
-//                     {name}
-//                   </Typography>
-//                   <Typography variant="body2" color="text.secondary">
-//                     {text}
-//                   </Typography>
-//                 </CardContent>
-//               </CardActionArea>
-//               <CardActions>
-//                 <Button size="small" color="primary">
-//                   Share
-//                 </Button>
-//               </CardActions>
-//             </Card>
-//           </Grid>
-//         );
-//       })}
+// {instructors.map((inst) => {
+//           const { id, name, phone } = inst;
+//           return (
+//             <Grid container item key={id} xs={12} sm={6} md={4}>
+//               <Card>
+//                 <CardActionArea>
+//                   <CardMedia
+//                     component="img"
+//                     image={`https://avatars.dicebear.com/v2/avataaars/${id}.svg`}
+//                     alt={name}
+//                   />
+//                   <CardContent>
+//                     <Typography gutterBottom variant="h5" component="div">
+//                       {name}
+//                     </Typography>
+//                     <Typography variant="body2" color="text.secondary">
+//                       {phone}
+//                     </Typography>
+//                   </CardContent>
+//                 </CardActionArea>
+//                 <CardActions>
+//                   <Button size="small" color="primary">
+//                     Share
+//                   </Button>
+//                 </CardActions>
+//               </Card>
+//             </Grid>
+//           );
+//         })}
