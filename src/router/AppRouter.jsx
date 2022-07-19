@@ -10,8 +10,8 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/home" element={<PrivateRouter />}>
-          <Route path="/home" element={<Home />} />
+        <Route path="/main" element={<PrivateRouter />}>
+          <Route path="/main" element={<Home />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -9,42 +9,58 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 // import Avatar from "@mui/material/Avatar";
 // import Tooltip from "@mui/material/Tooltip";
 import logo from "../img/logo.png";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 
-const pages = ["Products", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = ["Main", "Login", "Logout"];
+// const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  // const [anchorElUser, setAnchorElUser] = React.useState(null);
+  // const handleOpenUserMenu = (event) => {
+  //   setAnchorElUser(event.currentTarget);
+  // };
 
   // const handleCloseUserMenu = () => {
   //   setAnchorElUser(null);
   // };
 
   return (
-    <AppBar position="static" color="secondary">
+    <AppBar position="static" color="primary">
       <Container maxWidth="xl" sx={{ height: "10vh" }}>
         <Toolbar disableGutters>
-          <RouterLink to="/">
+          {/* <RouterLink to="/" sx={{ display: { xs: "flex", md: "none" } }}>
             <img src={logo} alt="logo" width="200rem" />
-          </RouterLink>
-
+          </RouterLink> */}
+          <Typography
+            variant="link"
+            noWrap
+            component={RouterLink}
+            to="/"
+            sx={{
+              mr: 2,
+              display: { xs: "none", md: "flex" },
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".3rem",
+              color: "inherit",
+              textDecoration: "none",
+            }}
+          >
+            <img src={logo} alt="logo" width="200px" />
+          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -81,11 +97,10 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
           <Typography
             variant="link"
             noWrap
-            component="RouterLink"
+            component={RouterLink}
             to="/"
             sx={{
               mr: 2,
@@ -98,18 +113,39 @@ const Navbar = () => {
               textDecoration: "none",
             }}
           >
-            {/* <img src={logo} alt="logo" width="200rem" /> */}
+            <img src={logo} alt="logo" width="200px" />
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {page}
-              </Button>
-            ))}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "right",
+            }}
+          >
+            <Button
+              variant="link"
+              component={RouterLink}
+              to="/main"
+              // sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Home
+            </Button>
+            <Button
+              variant="link"
+              component={RouterLink}
+              to="/"
+              // sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Login
+            </Button>
+            <Button
+              variant="link"
+              component={RouterLink}
+              to="/"
+              // sx={{ my: 2, color: "white", display: "block" }}
+            >
+              Logout
+            </Button>
           </Box>
         </Toolbar>
       </Container>
