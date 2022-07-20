@@ -9,17 +9,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
-// import Avatar from "@mui/material/Avatar";
-// import Tooltip from "@mui/material/Tooltip";
 import logo from "../img/logo.png";
-import { Link as RouterLink, NavLink } from "react-router-dom";
-
-const pages = ["Main", "Login", "Logout"];
-// const settings = ["Profile", "Account", "Dashboard", "Logout"];
+import { Link as RouterLink } from "react-router-dom";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  // const navigate = useNavigate();
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -27,15 +21,6 @@ const Navbar = () => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  // const [anchorElUser, setAnchorElUser] = React.useState(null);
-  // const handleOpenUserMenu = (event) => {
-  //   setAnchorElUser(event.currentTarget);
-  // };
-
-  // const handleCloseUserMenu = () => {
-  //   setAnchorElUser(null);
-  // };
 
   const logOutCleaner = () => {
     sessionStorage.clear();
@@ -51,7 +36,7 @@ const Navbar = () => {
             variant="link"
             noWrap
             component={RouterLink}
-            to="/"
+            to="/main"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -93,19 +78,13 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              <MenuItem /* variant="link" */ component={RouterLink} to="/main">
+              <MenuItem component={RouterLink} to="/main">
                 Home
               </MenuItem>
-
-              <MenuItem /* variant="link"  */ component={RouterLink} to="/">
+              <MenuItem component={RouterLink} to="/">
                 Login
               </MenuItem>
-              <MenuItem
-                // variant="link"
-                component={RouterLink}
-                to="/"
-                onClick={logOutCleaner}
-              >
+              <MenuItem component={RouterLink} to="/" onClick={logOutCleaner}>
                 Logout
               </MenuItem>
             </Menu>
@@ -132,8 +111,6 @@ const Navbar = () => {
               alt="logo"
               width="200px"
               // sx={{ width: { xs: "150px", sm: "200px" } }}
-              // display="flex"
-              // justify="center"
             />
           </Typography>
           <Box

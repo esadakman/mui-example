@@ -13,21 +13,23 @@ import { useContext } from "react";
 import { PaginateContext } from "../context/PaginateContext";
 const Cards = ({ users, pagesVisited }) => {
   const { usersPerPage } = useContext(PaginateContext);
-
-  const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
+  // ! ilk sayfanın
+  let page = 0;
+  pagesVisited < 0 ? (page = 0) : (page = pagesVisited);
+  const displayUsers = users.slice(page, page + usersPerPage);
   return (
     <>
       {displayUsers.map((inst, index) => {
-        const { id, firstName, email } = inst;
+        const { id, firstName, lastName, email } = inst;
         return (
           // ! id'yi key olarak verdiğimde her paginate işleminde id değiştiği için gereksiz renderlama oluyordu. Bunu engellemek adına key'i index olarak verdim
-          <Grid key={index} item xs={6} sm={4} md={1}>
+          <Grid key={index} item xs={12} sm={6} md={4}>
             <Card>
               <CardActionArea>
                 <CardMedia
                   component="img"
                   image={`https://avatars.dicebear.com/v2/avataaars/${id}.svg`}
-                  alt="asd"
+                  alt="user img"
                 />
                 <CardContent>
                   <Typography
@@ -36,18 +38,28 @@ const Cards = ({ users, pagesVisited }) => {
                     component="div"
                     align="center"
                   >
-                    {firstName}
-                  </Typography>
-                  <Typography variant="p" color="text.secondary" align="center">
-                    {/* Contact: */}
-                    {email}
+                    {firstName} {lastName}
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
-                <Button size="small" color="primary">
-                  Share
-                </Button>
+              <CardActions sx={{ justifyContent: "center" }}>
+                {/* <Button
+                  key="Email"
+                  component="a"
+                  href="mailto:"
+                  size="small"
+                  color="primary"
+                >
+                  Contact
+                </Button> */}
+                <Typography
+                  variant="p"
+                  fontSize={"1.2rem"}
+                  fontWeight={"900"}
+                  // overflow="auto"
+                >
+                  {email}
+                </Typography>
               </CardActions>
             </Card>
           </Grid>
@@ -58,42 +70,3 @@ const Cards = ({ users, pagesVisited }) => {
 };
 
 export default Cards;
-
-// {instructors.map((inst) => {
-//   const { id, name, phone } = inst;
-//   return (
-//     <Grid key={id} item xs={12} sm={6} md={4} sx={{ bgcolor: "red" }}>
-//       <Card>
-//         <CardActionArea>
-//           <CardMedia
-//             component="img"
-//             image={`https://avatars.dicebear.com/v2/avataaars/${id}.svg`}
-//             alt="asd"
-//           />
-//           <CardContent>
-//             <Typography
-//               gutterBottom
-//               variant="h5"
-//               component="div"
-//               align="center"
-//             >
-//               {name}
-//             </Typography>
-//             <Typography
-//               variant="body2"
-//               color="text.secondary"
-//               align="center"
-//             >
-//               Contact:{phone}
-//             </Typography>
-//           </CardContent>
-//         </CardActionArea>
-//         <CardActions>
-//           <Button size="small" color="primary">
-//             Share
-//           </Button>
-//         </CardActions>
-//       </Card>
-//     </Grid>
-//   );
-// })}

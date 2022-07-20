@@ -6,30 +6,24 @@ const useStyles = makeStyles((theme) => ({
     // position: "fixed",
     bottom: 0,
     zIndex: 4,
-    // backgroundColor: "green",
     padding: "10px 80px",
     color: "white",
-    width: "100%",
   },
   container: {
+    marginTop: "1rem",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    coloe: "white",
+    color: "white",
   },
 }));
 
 const AppPagination = ({ pageCount, pageNumber, setPageNumber }) => {
   const classes = useStyles();
-  // const pageNumbers = [];
-  // for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
-  //   pageNumbers.push(i);
-  // }
-  // console.log(pageNumbers);
 
   const onPageChanged = (event, value) => {
-    // ! setPageNumber(value) dediğimde value 1'den başladığı için ilk 10 veri gelmiyordu. Bunu çözmek adına value-1 dedim.
-    setPageNumber(value - 1);
+    // console.log(value);
+    setPageNumber(value);
   };
   return (
     <div className={classes.container}>
@@ -43,6 +37,8 @@ const AppPagination = ({ pageCount, pageNumber, setPageNumber }) => {
           count={pageCount}
           page={pageNumber}
           onChange={onPageChanged}
+          defaultPage={pageNumber}
+          color="primary"
         />
       </div>
     </div>
