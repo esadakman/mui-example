@@ -60,3 +60,5 @@ $ npm start / yarn start
 ```
 
 ### Preview of the Project
+
+![mui-pagi](https://user-images.githubusercontent.com/98649983/180073871-ddf25ef4-6827-4f35-a0d7-87eb287c326b.gif)
