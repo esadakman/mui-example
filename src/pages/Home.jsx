@@ -12,7 +12,6 @@ export default function Home() {
 
   const usersPerPage = 3;
   const pagesVisited = pageNumber * usersPerPage;
-  // console.log(pagesVisited);
 
   // const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
   // .map((user) => {  } )

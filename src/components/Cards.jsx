@@ -16,10 +16,10 @@ const Cards = ({ loading, users, pagesVisited }) => {
   const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
   return (
     <>
-      {displayUsers.map((inst) => {
+      {displayUsers.map((inst, index) => {
         const { id, firstName, email } = inst;
         return (
-          <Grid key={id} item xs={6} sm={4} md={1}>
+          <Grid key={index} item xs={6} sm={4} md={1}>
             <Card>
               <CardActionArea>
                 <CardMedia
