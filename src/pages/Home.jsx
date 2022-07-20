@@ -4,28 +4,17 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Cards from "../components/Cards";
 import AppPagination from "../components/AppPagination";
-
+import mockData from "../mock_data";
 export default function Home() {
-  // const [courses, setCourse] = React.useState(data);
-  const [instructors, setInstructors] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [instPerPage] = useState(2);
+  const [users, setUsers] = useState(mockData.slice(0, 10));
+  const [pageNumber, setPageNumber] = useState(0);
+  console.log(users);
 
-  const fetchInstructors = async () => {
-    setLoading(true);
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
-    setInstructors(res.data);
-    setLoading(false);
-  };
-  useEffect(() => {
-    fetchInstructors();
-  }, []);
-  // console.log(instructors);
-  const indexOfLastInst = currentPage * instPerPage;
-  const indexOfFirstInst = indexOfLastInst - instPerPage;
-  const currentInst = instructors.slice(indexOfFirstInst, indexOfLastInst);
-  console.log(instructors.length);
+  const usersPerPage = 10
+  const pageVisited = pageNumber * usersPerPage
+
+const displayUsers = 
+
   return (
     <Container>
       <Typography
@@ -38,17 +27,42 @@ export default function Home() {
         COURSES
       </Typography>
       <Grid container spacing={2} justifyContent="center" alignItems="center">
-        <Cards instructors={instructors} loading={loading} />
+        <Cards
+          users={users}
+          // loading={loading}
+          mockData={mockData}
+        />
       </Grid>
       <AppPagination
-        instPerPage={instPerPage}
-        totalInsts={instructors.length}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+      // instPerPage={instPerPage}
+      // totalInsts={instructors.length}
+      // currentPage={currentPage}
+      // setCurrentPage={setCurrentPage}
       />
     </Container>
   );
 }
+
+// const [courses, setCourse] = React.useState(data);
+// const [instructors, setInstructors] = useState([]);
+// const [loading, setLoading] = useState(false);
+// const [currentPage, setCurrentPage] = useState(1);
+// const [instPerPage] = useState(2);
+
+// const fetchInstructors = async () => {
+//   setLoading(true);
+//   const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+//   setInstructors(res.data);
+//   setLoading(false);
+// };
+// useEffect(() => {
+//   fetchInstructors();
+// }, []);
+// console.log(instructors);
+// const indexOfLastInst = currentPage * instPerPage;
+// const indexOfFirstInst = indexOfLastInst - instPerPage;
+// const currentInst = instructors.slice(indexOfFirstInst, indexOfLastInst);
+// console.log(instructors.length);
 
 // {instructors.map((inst) => {
 //           const { id, name, phone } = inst;
