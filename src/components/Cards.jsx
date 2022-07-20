@@ -2,18 +2,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import {
-  Button,
-  CardActionArea,
-  CardActions,
-  Grid,
-  //   Container,
-} from "@mui/material";
+import { CardActionArea, CardActions, Grid } from "@mui/material";
 import { useContext } from "react";
 import { PaginateContext } from "../context/PaginateContext";
 const Cards = ({ users, pagesVisited }) => {
   const { usersPerPage } = useContext(PaginateContext);
-  // ! ilk sayfanın
   let page = 0;
   pagesVisited < 0 ? (page = 0) : (page = pagesVisited);
   const displayUsers = users.slice(page, page + usersPerPage);
