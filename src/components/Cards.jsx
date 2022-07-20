@@ -16,7 +16,7 @@ const Cards = ({ users, pagesVisited }) => {
         const { id, firstName, lastName, email } = inst;
         return (
           // ! id'yi key olarak verdiğimde her paginate işleminde id değiştiği için gereksiz renderlama oluyordu. Bunu engellemek adına key'i index olarak verdim
-          <Grid key={index} item xs={12} sm={6} md={4}>
+          <Grid key={index} item xs={12} sm={6} md={3}>
             <Card>
               <CardActionArea>
                 <CardMedia
