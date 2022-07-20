@@ -10,16 +10,16 @@ import {
   //   Container,
 } from "@mui/material";
 // import data from "../data";
-const Cards = ({ loading, users, displayUsers }) => {
-  //   if (loading) {
-  //     return <h2>Loading...</h2>;
-  //   }
+const Cards = ({ loading, users, pagesVisited }) => {
+  const usersPerPage = 3;
+
+  const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
   return (
     <>
       {displayUsers.map((inst) => {
         const { id, firstName, email } = inst;
         return (
-          <Grid key={id} item xs={6} sm={4} md={2}>
+          <Grid key={id} item xs={6} sm={4} md={1}>
             <Card>
               <CardActionArea>
                 <CardMedia

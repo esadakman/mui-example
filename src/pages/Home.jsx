@@ -6,15 +6,15 @@ import Cards from "../components/Cards";
 import AppPagination from "../components/AppPagination";
 import mockData from "../mock_data";
 export default function Home() {
-  const [users, setUsers] = useState(mockData.slice(0, 50));
+  const [users, setUsers] = useState(mockData.slice(0, 100));
   const [pageNumber, setPageNumber] = useState(0);
   // console.log(users);
 
-  const usersPerPage = 6;
+  const usersPerPage = 3;
   const pagesVisited = pageNumber * usersPerPage;
-  console.log(pagesVisited);
+  // console.log(pagesVisited);
 
-  const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
+  // const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
   // .map((user) => {  } )
 
   const pageCount = Math.ceil(users.length / usersPerPage);
@@ -24,17 +24,17 @@ export default function Home() {
       <Typography
         variant="h4"
         align="center"
-        m={4}
+        m={2}
         color="error"
         sx={{ fontSize: { xs: "2rem", sm: "3rem" } }}
       >
-        COURSES
+        Students
       </Typography>
-      <Grid container spacing={2} justifyContent="center" alignItems="center">
+      <Grid container spacing={4} justifyContent="center" alignItems="center">
         <Cards
           users={users}
-          displayUsers={displayUsers}
-          // loading={loading}
+          pagesVisited={pagesVisited}
+          // usersPerPage={usersPerPage}
         />
       </Grid>
       <AppPagination
