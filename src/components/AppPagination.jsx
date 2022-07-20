@@ -20,21 +20,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppPagination = ({
-  instPerPage,
-  totalInsts,
-  currentPage,
-  setCurrentPage,
-}) => {
+const AppPagination = ({ pageCount, setPageNumber, pageNumber }) => {
   const classes = useStyles();
-  const pageNumbers = [];
-  for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
-    pageNumbers.push(i);
-  }
-  console.log(pageNumbers);
+  // const pageNumbers = [];
+  // for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
+  //   pageNumbers.push(i);
+  // }
+  // console.log(pageNumbers);
 
-  const handleChange = (event, value) => {
-    setCurrentPage(value);
+  const onPageChanged = (event, value) => {
+    setPageNumber(value);
   };
   return (
     <div className={classes.container}>
@@ -45,9 +40,9 @@ const AppPagination = ({
             justifyContent: "center",
           }}
           variant="outlined"
-          count={pageNumbers.length}
-          page={currentPage}
-          onChange={handleChange}
+          count={pageCount}
+          page={pageNumber}
+          onChange={onPageChanged}
         />
       </div>
     </div>
@@ -55,3 +50,37 @@ const AppPagination = ({
 };
 
 export default AppPagination;
+
+// const AppPagination = ({
+//   instPerPage,
+//   totalInsts,
+//   currentPage,
+//   setCurrentPage,
+// }) => {
+//   const classes = useStyles();
+//   const pageNumbers = [];
+//   for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
+//     pageNumbers.push(i);
+//   }
+//   // console.log(pageNumbers);
+
+//   const handleChange = (event, value) => {
+//     setCurrentPage(value);
+//   };
+//   return (
+//     <div className={classes.container}>
+//       <div className={classes.root}>
+//         <Pagination
+//           style={{
+//             display: "flex",
+//             justifyContent: "center",
+//           }}
+//           variant="outlined"
+//           count={pageNumbers.length}
+//           page={currentPage}
+//           onChange={handleChange}
+//         />
+//       </div>
+//     </div>
+//   );
+// };
