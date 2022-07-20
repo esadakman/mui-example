@@ -1,22 +1,21 @@
 import Typography from "@mui/material/Typography";
 import { Container, Grid } from "@mui/material";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useContext, useState } from "react";
+// import axios from "axios";
 import Cards from "../components/Cards";
 import AppPagination from "../components/AppPagination";
 import mockData from "../mock_data";
+import { PaginateContext } from "../context/PaginateContext";
 export default function Home() {
-  const [users, setUsers] = useState(mockData.slice(0, 100));
+  const users = mockData.slice(0, 100);
+  // const [pageNumber, setPageNumber] = useState(0);
   const [pageNumber, setPageNumber] = useState(0);
-  // console.log(users);
-
-  const usersPerPage = 3;
+  const { usersPerPage } = useContext(PaginateContext);
   const pagesVisited = pageNumber * usersPerPage;
 
   // const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
-  // .map((user) => {  } )
 
-  const pageCount = Math.ceil(users.length / usersPerPage);
+  const pageCount = Math.round(users.length / usersPerPage);
 
   return (
     <Container>
@@ -30,15 +29,10 @@ export default function Home() {
         Students
       </Typography>
       <Grid container spacing={4} justifyContent="center" alignItems="center">
-        <Cards
-          users={users}
-          pagesVisited={pagesVisited}
-          // usersPerPage={usersPerPage}
-        />
+        <Cards users={users} pagesVisited={pagesVisited} />
       </Grid>
       <AppPagination
         pageCount={pageCount}
-        // totalInsts={instructors.length}
         pageNumber={pageNumber}
         setPageNumber={setPageNumber}
       />

@@ -1,14 +1,3 @@
-// const Login = () => {
-// const handleSubmit = (e) => {
-//   e.preventDefault();
-//   sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
-
-//   Navigate("/home");
-// };
-//   return <div>Login</div>;
-// };
-
-// export default Login;
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -24,6 +13,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
+const theme = createTheme();
 
 function Copyright(props) {
   return (
@@ -43,20 +33,26 @@ function Copyright(props) {
   );
 }
 
-const theme = createTheme();
-
 export default function Login() {
   const navigate = useNavigate();
+  const [checked, setChecked] = React.useState(false);
+  // ? remember me butonunu takip edebilmek için handleRemember func. oluşturdum
+  const handleRemember = (event) => {
+    setChecked(event.target.checked);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    // console.log(data);
     const userInfo = {
       email: data.get("email"),
       password: data.get("password"),
     };
-    sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+    // ! remember me butonunu kullanabilmek için checked durumuna göre verileri local'e veya session'a depoluyorum
+    checked
+      ? localStorage.setItem("userInfo", JSON.stringify(userInfo))
+      : sessionStorage.setItem("userInfo", JSON.stringify(userInfo));
+
     navigate("/main");
   };
 
@@ -127,7 +123,13 @@ export default function Login() {
                 autoComplete="current-password"
               />
               <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
+                control={
+                  <Checkbox
+                    value="remember"
+                    color="primary"
+                    onChange={handleRemember}
+                  />
+                }
                 label="Remember me"
               />
               <Button
@@ -138,7 +140,7 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <Grid container>
+              {/* <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
@@ -149,8 +151,8 @@ export default function Login() {
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
-              </Grid>
-              <Copyright sx={{ mt: 5 }} />
+              </Grid> */}
+              <Copyright sx={{ mt: 1 }} />
             </Box>
           </Box>
         </Grid>

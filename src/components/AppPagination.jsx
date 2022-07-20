@@ -1,5 +1,4 @@
 import { Pagination } from "@mui/material";
-import React from "react";
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AppPagination = ({ pageCount, setPageNumber, pageNumber }) => {
+const AppPagination = ({ pageCount, pageNumber, setPageNumber }) => {
   const classes = useStyles();
   // const pageNumbers = [];
   // for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
@@ -29,7 +28,8 @@ const AppPagination = ({ pageCount, setPageNumber, pageNumber }) => {
   // console.log(pageNumbers);
 
   const onPageChanged = (event, value) => {
-    setPageNumber(value);
+    // ! setPageNumber(value) dediğimde value 1'den başladığı için ilk 10 veri gelmiyordu. Bunu çözmek adına value-1 dedim.
+    setPageNumber(value - 1);
   };
   return (
     <div className={classes.container}>
@@ -50,37 +50,3 @@ const AppPagination = ({ pageCount, setPageNumber, pageNumber }) => {
 };
 
 export default AppPagination;
-
-// const AppPagination = ({
-//   instPerPage,
-//   totalInsts,
-//   currentPage,
-//   setCurrentPage,
-// }) => {
-//   const classes = useStyles();
-//   const pageNumbers = [];
-//   for (let i = 1; i <= Math.ceil(totalInsts / instPerPage); i++) {
-//     pageNumbers.push(i);
-//   }
-//   // console.log(pageNumbers);
-
-//   const handleChange = (event, value) => {
-//     setCurrentPage(value);
-//   };
-//   return (
-//     <div className={classes.container}>
-//       <div className={classes.root}>
-//         <Pagination
-//           style={{
-//             display: "flex",
-//             justifyContent: "center",
-//           }}
-//           variant="outlined"
-//           count={pageNumbers.length}
-//           page={currentPage}
-//           onChange={handleChange}
-//         />
-//       </div>
-//     </div>
-//   );
-// };

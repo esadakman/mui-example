@@ -9,9 +9,10 @@ import {
   Grid,
   //   Container,
 } from "@mui/material";
-// import data from "../data";
-const Cards = ({ loading, users, pagesVisited }) => {
-  const usersPerPage = 3;
+import { useContext } from "react";
+import { PaginateContext } from "../context/PaginateContext";
+const Cards = ({ users, pagesVisited }) => {
+  const { usersPerPage } = useContext(PaginateContext);
 
   const displayUsers = users.slice(pagesVisited, pagesVisited + usersPerPage);
   return (
@@ -19,6 +20,7 @@ const Cards = ({ loading, users, pagesVisited }) => {
       {displayUsers.map((inst, index) => {
         const { id, firstName, email } = inst;
         return (
+          // ! id'yi key olarak verdiğimde her paginate işleminde id değiştiği için gereksiz renderlama oluyordu. Bunu engellemek adına key'i index olarak verdim
           <Grid key={index} item xs={6} sm={4} md={1}>
             <Card>
               <CardActionArea>

@@ -37,6 +37,11 @@ const Navbar = () => {
   //   setAnchorElUser(null);
   // };
 
+  const logOutCleaner = () => {
+    sessionStorage.clear();
+    localStorage.clear();
+  };
+
   return (
     <AppBar position="static" color="secondary">
       {/* <Container maxWidth="xl" sx={{ height: { xs: "8vh", sm: "10vh" } }}> */}
@@ -88,11 +93,21 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <NavLink to={`/${page.toLocaleLowerCase()}`}>{page}</NavLink>
-                </MenuItem>
-              ))}
+              <MenuItem /* variant="link" */ component={RouterLink} to="/main">
+                Home
+              </MenuItem>
+
+              <MenuItem /* variant="link"  */ component={RouterLink} to="/">
+                Login
+              </MenuItem>
+              <MenuItem
+                // variant="link"
+                component={RouterLink}
+                to="/"
+                onClick={logOutCleaner}
+              >
+                Logout
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -150,7 +165,7 @@ const Navbar = () => {
               variant="link"
               component={RouterLink}
               to="/"
-              onClick={() => sessionStorage.clear()}
+              onClick={logOutCleaner}
             >
               Logout
             </Button>
