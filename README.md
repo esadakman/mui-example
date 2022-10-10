@@ -53,7 +53,7 @@ MUI Example (folder)
 To run this project;
 
 ```
-$ git clone https://github.com/esadakman/mui-example.git
+$ git clone https://github.com/esadakman/reactjs-mui-example.git
 $ cd ../mui-example
 $ npm install / yarn
 $ npm start / yarn start
